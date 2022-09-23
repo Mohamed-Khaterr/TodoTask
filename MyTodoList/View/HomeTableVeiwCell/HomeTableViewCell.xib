@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="243" id="KGk-i7-Jjw" customClass="HomeTableViewCell" customModule="MyTodoList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="533" height="243"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="533" height="243"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-v4-Ru3">
+                        <rect key="frame" x="18" y="8" width="507" height="227"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gci-0M-Lag">
+                                <rect key="frame" x="434" y="8" width="65" height="20"/>
+                                <color key="backgroundColor" name="Mid-Red"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="cxG-kr-xnu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="tI8-Tu-fEP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrO-Jy-swN">
+                                <rect key="frame" x="441" y="203" width="58" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="Light-Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKv-pG-aF4">
+                                <rect key="frame" x="57" y="103" width="434" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="tjc-xQ-jd8">
+                                <rect key="frame" x="16" y="101" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="aes-vm-sb3"/>
+                                    <constraint firstAttribute="height" constant="25" id="imx-by-5Gz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DKv-pG-aF4" secondAttribute="trailing" constant="16" id="7In-iH-Gg8"/>
+                            <constraint firstItem="gci-0M-Lag" firstAttribute="top" secondItem="QE9-v4-Ru3" secondAttribute="top" constant="8" id="LhK-df-yjc"/>
+                            <constraint firstItem="tjc-xQ-jd8" firstAttribute="centerY" secondItem="QE9-v4-Ru3" secondAttribute="centerY" id="Qiy-nM-02f"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Xe0-K2-TsZ"/>
+                            <constraint firstAttribute="trailing" secondItem="qrO-Jy-swN" secondAttribute="trailing" constant="8" id="Ybo-jc-3iw"/>
+                            <constraint firstAttribute="bottom" secondItem="qrO-Jy-swN" secondAttribute="bottom" constant="8" id="dPA-s5-gpD"/>
+                            <constraint firstItem="DKv-pG-aF4" firstAttribute="leading" secondItem="tjc-xQ-jd8" secondAttribute="trailing" constant="16" id="f4B-14-R0j"/>
+                            <constraint firstItem="DKv-pG-aF4" firstAttribute="centerY" secondItem="QE9-v4-Ru3" secondAttribute="centerY" id="hsh-Z9-O3J"/>
+                            <constraint firstItem="tjc-xQ-jd8" firstAttribute="leading" secondItem="QE9-v4-Ru3" secondAttribute="leading" constant="16" id="pwN-yw-w8C"/>
+                            <constraint firstAttribute="trailing" secondItem="gci-0M-Lag" secondAttribute="trailing" constant="8" id="vgo-50-1Wd"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erg-is-EDX">
+                        <rect key="frame" x="8" y="8" width="46" height="27"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69u-1F-qhl">
+                                <rect key="frame" x="5" y="5" width="36" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" name="Light-Mandys Pink"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="Mandys Pink"/>
+                        <constraints>
+                            <constraint firstItem="69u-1F-qhl" firstAttribute="top" secondItem="erg-is-EDX" secondAttribute="top" constant="5" id="3oZ-HD-Q73"/>
+                            <constraint firstAttribute="bottom" secondItem="69u-1F-qhl" secondAttribute="bottom" constant="5" id="MjC-yJ-Qcn"/>
+                            <constraint firstItem="69u-1F-qhl" firstAttribute="leading" secondItem="erg-is-EDX" secondAttribute="leading" constant="5" id="Mpn-Lj-XlC"/>
+                            <constraint firstAttribute="trailing" secondItem="69u-1F-qhl" secondAttribute="trailing" constant="5" id="lVF-Hs-0iV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="erg-is-EDX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="12F-HT-Tdk"/>
+                    <constraint firstItem="erg-is-EDX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="DQr-ee-lle"/>
+                    <constraint firstItem="QE9-v4-Ru3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Rnd-HP-jsS"/>
+                    <constraint firstItem="QE9-v4-Ru3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="Sar-Fo-fks"/>
+                    <constraint firstAttribute="bottom" secondItem="QE9-v4-Ru3" secondAttribute="bottom" constant="8" id="wbh-dN-TyT"/>
+                    <constraint firstAttribute="trailing" secondItem="QE9-v4-Ru3" secondAttribute="trailing" constant="8" id="ySa-Hd-yd7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="categoryLabel" destination="69u-1F-qhl" id="jov-pD-gLj"/>
+                <outlet property="categoryView" destination="erg-is-EDX" id="bkC-Ut-zSX"/>
+                <outlet property="checkBoxImageView" destination="tjc-xQ-jd8" id="53h-gH-8n4"/>
+                <outlet property="priorityLabel" destination="gci-0M-Lag" id="CxS-D5-WAG"/>
+                <outlet property="secondView" destination="QE9-v4-Ru3" id="Nei-mz-xcf"/>
+                <outlet property="taskLabel" destination="DKv-pG-aF4" id="yPJ-np-tID"/>
+                <outlet property="timeLabel" destination="qrO-Jy-swN" id="1Kn-9C-Y69"/>
+            </connections>
+            <point key="canvasLocation" x="119.56521739130436" y="266.18303571428572"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checked" width="1600" height="1600"/>
+        <namedColor name="Black">
+            <color red="0.10999999940395355" green="0.10599999874830246" blue="0.10599999874830246" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light-Black">
+            <color red="0.2630000114440918" green="0.2630000114440918" blue="0.2630000114440918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light-Mandys Pink">
+            <color red="0.4309999942779541" green="0.10999999940395355" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Mandys Pink">
+            <color red="0.99199998378753662" green="0.70599997043609619" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Mid-Red">
+            <color red="0.94900000095367432" green="0.3449999988079071" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
