@@ -14,7 +14,7 @@
         <relationship name="parentCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="tasks" inverseEntity="Category"/>
     </entity>
     <elements>
+        <element name="Category" positionX="128.93359375" positionY="-8.00244140625" width="128" height="74"/>
         <element name="Task" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="Category" positionX="128.93359375" positionY="-8.00244140625" width="128" height="88"/>
     </elements>
 </model>

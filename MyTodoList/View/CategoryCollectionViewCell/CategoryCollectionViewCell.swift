@@ -7,14 +7,14 @@
 
 import UIKit
 
-class CreateTaskCollectionViewCell: UICollectionViewCell {
+class CategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     var category: Category?
     
-    static let identifier = "CreateTaskCollectionViewCell"
+    static let identifier = "CategoryCollectionViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +31,7 @@ class CreateTaskCollectionViewCell: UICollectionViewCell {
     }
     
     static func nib() -> UINib{
-        return UINib(nibName: "CreateTaskCollectionViewCell", bundle: nil)
+        return UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
     }
 
 }

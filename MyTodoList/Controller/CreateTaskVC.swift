@@ -15,6 +15,7 @@ class CreateTaskVC: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var alarmTextField: UITextField!
     
+    @IBOutlet weak var remindMeSwitch: UISwitch!
     
     @IBOutlet weak var lowPriorityButton: UIButton!
     @IBOutlet weak var mediumPriorityButton: UIButton!
@@ -26,19 +27,37 @@ class CreateTaskVC: UIViewController {
     
     private var tasks: [Task] = []
     
+    private let notificationCenter = UNUserNotificationCenter.current()
+    // give us unique id
+    private var uuidString = UUID().uuidString
     
     private var categories: [Category] = []
     private var selectedCategory: (category: Category?, isSelected: Bool) = (nil, false)
     
+    
+    private let formatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(CreateTaskCollectionViewCell.nib(), forCellWithReuseIdentifier: CreateTaskCollectionViewCell.identifier)
+        collectionView.register(CategoryCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
         taskNameTextField.delegate = self
         taskDescritpitonTextField.delegate = self
+        alarmTextField.delegate = self
+        dateTextField.delegate = self
+        
+        
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .criticalAlert]) { granted, error in
+            if error != nil {
+                DispatchQueue.main.async {
+                    self.showErrorAlert(title: "Notification", message: "You need to allow notification so that you can user Remind me")
+                }
+                return
+            }
+        }
         
         setupUI()
         
@@ -58,6 +77,40 @@ class CreateTaskVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    
+    private func createNotification(at time: Date,title: String, body: String){
+        guard remindMeSwitch.isOn else {
+            print("*************************************************************")
+            print("NONONO Notification")
+            print("*************************************************************")
+            return
+        }
+        
+        
+        print("*************************************************************")
+        print("Creating Notification")
+        print("*************************************************************")
+        // MARK: Create Local Notitification
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: time)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: self.uuidString, content: content, trigger: trigger)
+        
+        notificationCenter.add(request) { error in
+            if error != nil{
+                print(error ?? "Error Add Notification Request")
+                self.remindMeSwitch.isOn = false
+                return
+            }
+        }
+        
     }
     
     
@@ -113,44 +166,57 @@ class CreateTaskVC: UIViewController {
     
     
     @objc func dateChange(datePicker: UIDatePicker){
-        dateTextField.text = stringDate(date: datePicker.date, format: "dd MMMM yyyy")
+        dateTextField.text = self.formatter.string(from: datePicker.date)
     }
     
     @objc func timeChange(timePicker: UIDatePicker){
-        alarmTextField.text = stringDate(date: timePicker.date, format: "h:mm a")
+        alarmTextField.text = self.formatter.string(from: timePicker.date)
     }
     
     @objc func doneToolBarButtonPressed(){
         self.view.endEditing(true)
     }
     
-    private func stringDate(date: Date, format: String) -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        
-        return formatter.string(from: date)
-    }
-    
     @IBAction func switchDidChange(_ sender: UISwitch) {
+        print(remindMeSwitch.isOn)
         if sender.isOn{
-            print("is On")
-        }else{
-            print("is Off")
+            notificationCenter.getNotificationSettings { settings in
+                // if User Not Allow Notification
+                if settings.authorizationStatus != .authorized{
+                    DispatchQueue.main.async {
+                        self.remindMeSwitch.isOn = false
+                        let alert = UIAlertController(title: "Notification", message: "You need to allow notification so that you can use Remind Me.", preferredStyle: .alert)
+                        
+                        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        
+                        let goToSettings = UIAlertAction(title: "Settings", style: .default) { _ in
+                            if let settinsURL = URL(string: UIApplication.openSettingsURLString){
+                                if (UIApplication.shared.canOpenURL(settinsURL)){
+                                    UIApplication.shared.open(settinsURL)
+                                }
+                            }
+                        }
+                        
+                        alert.addAction(goToSettings)
+                        alert.addAction(okButton)
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+            
         }
     }
     
     @IBAction func priorityButtonPressed(_ sender: UIButton) {
-        guard let title = sender.currentTitle else {
-//            fatalError("No Title for Priority Buttons")
-            return
-        }
+        guard let title = sender.currentTitle else { return }
         
-        if selectedPriority == title {
+        if self.selectedPriority == title {
             sender.backgroundColor = .clear
-            selectedPriority = ""
+            self.selectedPriority = ""
             
         }else{
-            selectedPriority = title
+            self.selectedPriority = title
             
             switch title{
             case "Low":
@@ -178,65 +244,88 @@ class CreateTaskVC: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        if let taskName = taskNameTextField.text, taskName != "", let taskDescritpion = taskDescritpitonTextField.text, taskDescritpion != ""{
-            if selectedPriority != ""{
-                if let date = dateTextField.text, date != "", let time = alarmTextField.text, time != ""{
-                    if let selectedCategory = selectedCategory.category {
-                        // MARK: Save New Task
-                        let task = Task(context: CoreDataManager.shared.context)
-                        task.name = taskName
-                        task.descritpion = taskDescritpion
-                        
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "dd MMM yyyy h:mm a"
-                        
-                        task.date = formatter.date(from: "\(date) \(time)")
-                        
-                        task.priority = selectedPriority
-                        
-                        task.parentCategory = selectedCategory
-                        
-                        task.isDone = false
-                        
-                        self.tasks.append(task)
-                        
-                        if CoreDataManager.shared.saveData() {
-                            // Saved Successfully
-                            tabBarController?.selectedIndex = 0
-                            
-                        }else{
-                            showErrorAlert(title: "Saving New Task", message: "There is error while saving new task. please try again later")
-                        }
-                        
-                    }else{
-                        showErrorAlert(title: "Category", message: "Please select category")
-                        return
-                    }
-                }else{
-                    showErrorAlert(title: "Date & Alarm", message: "Please select date & alarm time")
-                    return
-                }
-            }else{
-                showErrorAlert(title: "Prioriry", message: "Please select task priority")
-                return
-            }
-        }else{
+        guard let taskName = taskNameTextField.text, taskName != "", let taskDescritpion = taskDescritpitonTextField.text, taskDescritpion != "" else {
             showErrorAlert(title: "Task", message: "Please add task name & task descritption")
             return
         }
-        
+
+        guard selectedPriority != "" else{
+            showErrorAlert(title: "Prioriry", message: "Please select task priority")
+            return
+        }
+
+        guard let date = dateTextField.text, date != "", let time = alarmTextField.text, time != "" else{
+            showErrorAlert(title: "Date & Alarm", message: "Please select date & alarm time")
+            return
+        }
+
+        guard let selectedCategory = selectedCategory.category else{
+            showErrorAlert(title: "Category", message: "Please select category")
+            return
+        }
+
+
+
+        formatter.dateFormat = "dd MMM yyyy h:mm a"
+        if let dateTime = self.formatter.date(from: "\(date) \(time)"){
+            // MARK: Save New Task
+            let task = Task(context: CoreDataManager.shared.context)
+            task.name = taskName
+            task.descritpion = taskDescritpion
+
+
+
+            task.date = dateTime
+
+            task.priority = selectedPriority
+
+            task.parentCategory = selectedCategory
+
+            task.isDone = false
+
+            self.tasks.append(task)
+
+            if CoreDataManager.shared.saveData() {
+                // Saved Successfully
+                createNotification(at: dateTime, title: taskName, body: taskDescritpion)
+                
+                // Resture input Fields
+                [taskNameTextField, taskDescritpitonTextField, alarmTextField, dateTextField].forEach({ $0?.text = nil})
+                [lowPriorityButton, highPriorityButton, mediumPriorityButton].forEach({ $0?.backgroundColor = .clear})
+
+                self.tabBarController?.selectedIndex = 0
+
+            }else{
+                showErrorAlert(title: "Saving New Task", message: "There is error while saving new task. please try again later")
+            }
+            
+        }
     }
-    
+}
+
+// MARK: - Helper Functions
+extension CreateTaskVC{
     private func showErrorAlert(title: String,message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
+        
     }
 }
 
 // MARK: - TextField Delegate
 extension CreateTaskVC: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == alarmTextField {
+            self.formatter.dateFormat = "h:mm a"
+            alarmTextField.text = self.formatter.string(from: .now)
+        }else if textField == dateTextField{
+            self.formatter.dateFormat = "dd MMMM yyyy"
+            dateTextField.text = self.formatter.string(from: .now)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == taskNameTextField{
             taskDescritpitonTextField.becomeFirstResponder()
@@ -260,7 +349,7 @@ extension CreateTaskVC: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreateTaskCollectionViewCell.identifier, for: indexPath) as! CreateTaskCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as! CategoryCollectionViewCell
         
         if categories.isEmpty {
             cell.categoryNameLabel.text = "You need to create Category"
@@ -282,7 +371,7 @@ extension CreateTaskVC: UICollectionViewDelegate{
             return
         }
         
-        let cell = collectionView.cellForItem(at: indexPath) as! CreateTaskCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
         
         if cell.category == selectedCategory.category && selectedCategory.isSelected{
             // There is selected category then do ->

@@ -17,12 +17,10 @@ struct Constant{
     static let lightBlue = UIColor(named: "Light-Blue")
     static let midGreen = UIColor(named: "Mid-Green")
     static let midRed = UIColor(named: "Mid-Red")
+    static let backgroundColor = UIColor(named: "background Color")
     
     // MARK: - TabBar Images
-    static let home = Image(fill: "house.fill", notFill: "house")
-    static let apps = Image(fill: "square.grid.2x2.fill", notFill: "square.grid.2x2")
-    static let bell = Image(fill: "bell.fill", notFill: "bell")
-    static let calendar = Image(fill: "calendar.circle.fill", notFill: "calendar")
+    static let plusButton = "Plus Button"
     
     // MARK: - CheckBox Images
 //    static let checked = UIImage(named: "checked")

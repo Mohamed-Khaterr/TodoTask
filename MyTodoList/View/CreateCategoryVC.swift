@@ -13,7 +13,7 @@ class CreateCategoryVC: UIViewController {
     @IBOutlet weak var selecetedColorView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let colors: [String] = ["Black", "Light-Black", "Light-Blue", "Mandys Pink", "Mid-Green", "Mid-Red"]
+    private let colors: [String] = ["Light-Black", "Light-Blue", "Mandys Pink", "Mid-Green", "Prelude", "Carnation Pink", "Norway", "Medium Violet Red", "Feijoa", "Periwinkle"]
     private var categoryies: [Category] = []
     
     override func viewDidLoad() {
@@ -48,39 +48,44 @@ class CreateCategoryVC: UIViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        if let categoryTitle = categoryTitleTextField.text, categoryTitle != "", selecetedColorView.backgroundColor != .clear{
-            var color: String = ""
-            if Constant.mandysPink == selecetedColorView.backgroundColor{
-                color = "Mandys Pink"
-            }else if Constant.black == selecetedColorView.backgroundColor{
-                color = "Black"
-            }else if Constant.lightBlack == selecetedColorView.backgroundColor{
-                color = "Light-Black"
-            }else if Constant.lightBlue == selecetedColorView.backgroundColor{
-                color = "Light-Blue"
-            }else if Constant.midGreen == selecetedColorView.backgroundColor{
-                color = "Mid-Green"
-            }else if Constant.midRed == selecetedColorView.backgroundColor{
-                color = "Mid-Red"
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        
+        if let categoryTitle = categoryTitleTextField.text, categoryTitle != ""{
+            var selectedColor: String = ""
+            for color in colors{
+                if UIColor(named: color) == selecetedColorView.backgroundColor{
+                    selectedColor = color
+                    break
+                }
+            }
+            
+            if selectedColor == "" {
+                alert.title = "Color"
+                alert.message = "Plaease selecet Color"
+                
+                self.present(alert, animated: true, completion: nil)
+                return
             }
             
             let category = Category(context: CoreDataManager.shared.context)
             category.name = categoryTitle
-            category.color = color
+            category.color = selectedColor
             
             categoryies.append(category)
             if CoreDataManager.shared.saveData(){
                 navigationController?.popToRootViewController(animated: true)
             }else{
-                let alert = UIAlertController(title: "Saving Category", message: "There is error happend while adding new category, please try it again", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+                alert.message = "Error occured while saving new category, please try again later"
                 
                 self.present(alert, animated: true, completion: nil)
+                return
             }
             
         }else{
-            let alert = UIAlertController(title: "Title & Color", message: "You need to add title and select color", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            alert.title = "Title"
+            alert.message = "You need to add title"
             
             self.present(alert, animated: true, completion: nil)
         }

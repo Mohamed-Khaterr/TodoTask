@@ -19,7 +19,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(HomeTableViewCell.nib(), forCellReuseIdentifier: HomeTableViewCell.identifier)
+        tableView.register(TaskTableViewCell.nib(), forCellReuseIdentifier: TaskTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -27,7 +27,9 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let fetchedTasks = CoreDataManager.shared.fetchTasks(){
+        let sortDescritptor = NSSortDescriptor(key: "priority", ascending: true)
+        
+        if let fetchedTasks = CoreDataManager.shared.fetchTasks(sortDescriptor: [sortDescritptor]){
             self.tasks = fetchedTasks
             tableView.reloadData()
         }
@@ -58,16 +60,16 @@ extension HomeVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as! TaskTableViewCell
         
         if tasks.isEmpty{
             cell.taskLabel.text = "No Tasks"
-            cell.categoryLabel.isHidden = true
+            cell.categoryView.isHidden = true
             cell.priorityLabel.isHidden = true
             cell.checkBoxImageView.isHidden = true
             return cell
         }else{
-            cell.categoryLabel.isHidden = false
+            cell.categoryView.isHidden = false
             cell.priorityLabel.isHidden = false
             cell.checkBoxImageView.isHidden = false
         }
@@ -104,6 +106,7 @@ extension HomeVC: UITableViewDataSource{
 // MARK: - TableView Delegate
 extension HomeVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !tasks.isEmpty else { return }
         tasks[indexPath.row].isDone = !tasks[indexPath.row].isDone
         
         if CoreDataManager.shared.saveData() {

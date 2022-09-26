@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeTableViewCell: UITableViewCell {
+class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -20,7 +20,7 @@ class HomeTableViewCell: UITableViewCell {
     
     private let dateFormat = DateFormatter()
     
-    static let identifier = "HomeCell"
+    static let identifier = "TaskTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,18 +57,18 @@ class HomeTableViewCell: UITableViewCell {
         switch priority{
         case .high:
             priorityLabel.text = "High"
-            priorityLabel.backgroundColor = Constant.midRed
+            priorityLabel.backgroundColor = UIColor(named: "Mid-Red")
         case .low:
             priorityLabel.text = "Low"
-            priorityLabel.backgroundColor = Constant.midGreen
+            priorityLabel.backgroundColor = UIColor(named: "Mid-Green")
         case .medium:
             priorityLabel.text = "Medium"
-            priorityLabel.backgroundColor = Constant.mandysPink
+            priorityLabel.backgroundColor = UIColor(named: "Mandys Pink")
         }
     }
     
     static func nib() -> UINib{
-        return UINib(nibName: "HomeTableViewCell", bundle: nil)
+        return UINib(nibName: "TaskTableViewCell", bundle: nil)
     }
     
 }

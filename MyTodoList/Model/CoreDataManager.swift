@@ -29,7 +29,16 @@ struct CoreDataManager{
         }
     }
     
-    func fetchTasks(with request: NSFetchRequest<Task> = Task.fetchRequest()) -> [Task]?{
+    func fetchTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), predicate: NSPredicate? = nil, sortDescriptor: [NSSortDescriptor]? = nil) -> [Task]?{
+        
+        if let predicate = predicate {
+            request.predicate = predicate
+        }
+        
+        if let sortDescriptor = sortDescriptor {
+            request.sortDescriptors = sortDescriptor
+        }
+        
         do {
             let result = try context.fetch(request)
             
