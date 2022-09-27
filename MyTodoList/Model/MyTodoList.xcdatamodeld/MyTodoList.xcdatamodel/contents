@@ -3,7 +3,7 @@
     <entity name="Category" representedClassName=".Category" syncable="YES" codeGenerationType="class">
         <attribute name="color" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="tasks" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="parentCategory" inverseEntity="Task"/>
+        <relationship name="tasks" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="parentCategory" inverseEntity="Task"/>
     </entity>
     <entity name="Task" representedClassName=".Task" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -11,10 +11,10 @@
         <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="priority" attributeType="String"/>
-        <relationship name="parentCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="tasks" inverseEntity="Category"/>
+        <relationship name="parentCategory" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="tasks" inverseEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="128.93359375" positionY="-8.00244140625" width="128" height="74"/>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

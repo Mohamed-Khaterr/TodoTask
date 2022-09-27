@@ -32,12 +32,19 @@ class CalendarTaskTableViewCell: UITableViewCell {
         circleView.cornerRadius()
         
         taskContentView.cornerRadius(with: 15)
+//        taskContentView.layer.shadowOffset = .zero
+//        taskContentView.layer.shadowRadius = 15
+//        taskContentView.layer.shadowOpacity = 1
+//        taskContentView.layer.shadowColor = Constant.black?.cgColor
+//        taskContentView.layer.shouldRasterize = true
+//        taskContentView.layer.shadowPath = UIBezierPath(rect: taskContentView.bounds).cgPath
+        
+        taskContentView.layer.cornerRadius = 15
+        taskContentView.layer.shadowColor = UIColor.black.cgColor
+        taskContentView.layer.shadowOpacity = 0.3
         taskContentView.layer.shadowOffset = .zero
         taskContentView.layer.shadowRadius = 15
-        taskContentView.layer.shadowOpacity = 1
-        taskContentView.layer.shadowColor = Constant.black?.cgColor
-        taskContentView.layer.shouldRasterize = true
-        taskContentView.layer.shadowPath = UIBezierPath(rect: taskContentView.bounds).cgPath
+        taskContentView.layer.masksToBounds = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

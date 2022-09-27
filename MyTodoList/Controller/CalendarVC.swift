@@ -83,7 +83,6 @@ extension CalendarVC{
         if Calendar.current.isDateInToday(date){
             // Current Date
             predicate = NSPredicate(format: "date >= %@ AND date <= %@", argumentArray: [date, endDay])
-//            predicate = NSPredicate(format: "date >= %@ AND date <= %@", date as CVarArg, endDay as CVarArg)
         }else{
             // if User Select Date
             if let startDay = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date){

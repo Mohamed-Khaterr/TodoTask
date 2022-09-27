@@ -177,15 +177,15 @@ extension SearchTVC: SwipeTableViewCellDelegate{
             self.tableView.reloadData()
         }
         
-        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
-            switch self.selectedSearch{
-            case .task:
-                print("Edite")
-            case .category:
-                print("Edite")
-            }
-        }
+//        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+//            switch self.selectedSearch{
+//            case .task:
+//                print("Edite")
+//            case .category:
+//                print("Edite")
+//            }
+//        }
         
-        return [deleteAction, editAction]
+        return [deleteAction]
     }
 }
