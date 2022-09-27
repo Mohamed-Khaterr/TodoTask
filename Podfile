@@ -6,6 +6,6 @@ target 'MyTodoList' do
   use_frameworks!
 
   # Pods for MyTodoList
-
+pod 'SwipeCellKit'
 
 end

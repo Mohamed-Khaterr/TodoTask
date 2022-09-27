@@ -92,7 +92,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="background Color"/>
                         <constraints>
                             <constraint firstItem="7pc-7P-3ai" firstAttribute="leading" secondItem="lma-3C-w7U" secondAttribute="leading" constant="16" id="1WH-pf-wci"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="124" id="JfY-4R-KhJ"/>

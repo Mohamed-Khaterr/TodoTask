@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class TaskTableViewCell: UITableViewCell {
+class TaskTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreData
+import SwipeCellKit
 
 class HomeVC: UIViewController {
     
@@ -21,7 +21,6 @@ class HomeVC: UIViewController {
         
         tableView.register(TaskTableViewCell.nib(), forCellReuseIdentifier: TaskTableViewCell.identifier)
         tableView.dataSource = self
-        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +60,8 @@ extension HomeVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as! TaskTableViewCell
+        
+        cell.delegate = self
         
         if tasks.isEmpty{
             cell.taskLabel.text = "No Tasks"
@@ -104,15 +105,45 @@ extension HomeVC: UITableViewDataSource{
     }
 }
 
-// MARK: - TableView Delegate
-extension HomeVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard !tasks.isEmpty else { return }
-        tasks[indexPath.row].isDone = !tasks[indexPath.row].isDone
-        
-        if CoreDataManager.shared.saveData() {
-            // Saved successfully
-            tableView.reloadData()
+
+// MARK: - SwipKit TableViewCell Delegate
+extension HomeVC: SwipeTableViewCellDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        if orientation == .left{
+            let doneAction = SwipeAction(style: .default, title: "Done!") { action, indexPath in
+                self.tasks[indexPath.row].isDone = !self.tasks[indexPath.row].isDone
+                
+                if CoreDataManager.shared.saveData() {
+                    // Saved successfully
+                    self.tableView.reloadData()
+                }
+            }
+            
+            doneAction.backgroundColor = UIColor(red: 0.76, green: 0.92, blue: 0.87, alpha: 1.00)
+            doneAction.textColor = Constant.black
+            doneAction.font = UIFont.boldSystemFont(ofSize: 16)
+            
+            doneAction.title = self.tasks[indexPath.row].isDone ? "Not Done!" : "Done!"
+            
+            return [doneAction]
         }
+        
+        if orientation == .right{
+            
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                if CoreDataManager.shared.delete(task: self.tasks[indexPath.row]){
+                    print("Deleted Successfuly")
+                    self.tasks.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                }
+            }
+            
+            return [deleteAction]
+        }
+        
+        
+        
+        
+        return nil
     }
 }

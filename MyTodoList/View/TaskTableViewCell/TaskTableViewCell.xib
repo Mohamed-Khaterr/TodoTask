@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-v4-Ru3">
-                        <rect key="frame" x="18" y="8" width="507" height="227"/>
+                        <rect key="frame" x="66.5" y="8" width="400" height="227"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gci-0M-Lag">
-                                <rect key="frame" x="434" y="8" width="65" height="20"/>
+                                <rect key="frame" x="327" y="8" width="65" height="20"/>
                                 <color key="backgroundColor" name="Mid-Red"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="cxG-kr-xnu"/>
@@ -32,13 +32,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrO-Jy-swN">
-                                <rect key="frame" x="441" y="203" width="58" height="16"/>
+                                <rect key="frame" x="334" y="203" width="58" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="Light-Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKv-pG-aF4">
-                                <rect key="frame" x="57" y="103" width="434" height="21"/>
+                                <rect key="frame" x="57" y="103" width="327" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erg-is-EDX">
-                        <rect key="frame" x="8" y="8" width="46" height="27"/>
+                        <rect key="frame" x="52.5" y="6" width="46" height="27"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69u-1F-qhl">
                                 <rect key="frame" x="5" y="5" width="36" height="17"/>
@@ -86,12 +86,12 @@
                 </subviews>
                 <color key="backgroundColor" name="background Color"/>
                 <constraints>
-                    <constraint firstItem="erg-is-EDX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="12F-HT-Tdk"/>
-                    <constraint firstItem="erg-is-EDX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="DQr-ee-lle"/>
+                    <constraint firstItem="erg-is-EDX" firstAttribute="leading" secondItem="QE9-v4-Ru3" secondAttribute="leading" constant="-14" id="12F-HT-Tdk"/>
+                    <constraint firstItem="erg-is-EDX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="DQr-ee-lle"/>
+                    <constraint firstItem="QE9-v4-Ru3" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.75" id="Jec-0E-8if"/>
                     <constraint firstItem="QE9-v4-Ru3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Rnd-HP-jsS"/>
-                    <constraint firstItem="QE9-v4-Ru3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="Sar-Fo-fks"/>
+                    <constraint firstItem="QE9-v4-Ru3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fb3-Xv-L6E"/>
                     <constraint firstAttribute="bottom" secondItem="QE9-v4-Ru3" secondAttribute="bottom" constant="8" id="wbh-dN-TyT"/>
-                    <constraint firstAttribute="trailing" secondItem="QE9-v4-Ru3" secondAttribute="trailing" constant="8" id="ySa-Hd-yd7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
