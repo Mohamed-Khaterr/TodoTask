@@ -41,7 +41,11 @@ class TaskTableViewCell: SwipeTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func configuare(task: String, category: String, categoryColor: UIColor, date: Date, priority: Priority){
+    static func nib() -> UINib{
+        return UINib(nibName: "TaskTableViewCell", bundle: nil)
+    }
+    
+    public func configuare(task: String, category: String, categoryColor: UIColor, date: Date, priority: Priority, isDone: Bool){
         // Task
         taskLabel.text = task
         
@@ -66,10 +70,25 @@ class TaskTableViewCell: SwipeTableViewCell {
             priorityLabel.text = "Medium"
             priorityLabel.backgroundColor = UIColor(named: "Mandys Pink")
         }
+        
+        checkBoxChange(isDone: isDone)
     }
     
-    static func nib() -> UINib{
-        return UINib(nibName: "TaskTableViewCell", bundle: nil)
+    public func checkBoxChange(isDone: Bool){
+        checkBoxImageView.image = isDone ? UIImage(named: Constant.checkBox.fill) : UIImage(named: Constant.checkBox.notFill)
     }
     
+    
+    public func editCellView(showeNil showe: Bool){
+        if showe{
+            taskLabel.text = "No Tasks"
+            categoryView.isHidden = true
+            priorityLabel.isHidden = true
+            checkBoxImageView.isHidden = true
+        }else{
+            categoryView.isHidden = false
+            priorityLabel.isHidden = false
+            checkBoxImageView.isHidden = false
+        }
+    }
 }

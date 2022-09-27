@@ -33,9 +33,6 @@ class HomeVC: UIViewController {
             tableView.reloadData()
         }
     }
-
-    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
-    }
 }
 
 // MARK: - TableView DataSource
@@ -64,15 +61,10 @@ extension HomeVC: UITableViewDataSource{
         cell.delegate = self
         
         if tasks.isEmpty{
-            cell.taskLabel.text = "No Tasks"
-            cell.categoryView.isHidden = true
-            cell.priorityLabel.isHidden = true
-            cell.checkBoxImageView.isHidden = true
+            cell.editCellView(showeNil: true)
             return cell
         }else{
-            cell.categoryView.isHidden = false
-            cell.priorityLabel.isHidden = false
-            cell.checkBoxImageView.isHidden = false
+            cell.editCellView(showeNil: false)
         }
         
         cell.selectionStyle = .none
@@ -80,24 +72,10 @@ extension HomeVC: UITableViewDataSource{
         let task = tasks[indexPath.row]
         
         if let taskName = task.name, let categoryName = task.parentCategory?.name, let color = task.parentCategory?.color, let date = task.date, let taskPriority = task.priority{
-            var priority = Priority.low
             
-            switch taskPriority{
-            case "Low":
-                priority = .low
-            case "Medium":
-                priority = .medium
-            case "High":
-                priority = .high
-                
-            default:
-                break
-            }
+            let priority = Priority.stringToPriority(string: taskPriority)
             
-            
-            cell.configuare(task: taskName, category: categoryName, categoryColor: UIColor(named: color) ?? .clear, date: date, priority: priority)
-            
-            cell.checkBoxImageView.image = task.isDone ? UIImage(named: Constant.checkBox.fill) : UIImage(named: Constant.checkBox.notFill)
+            cell.configuare(task: taskName, category: categoryName, categoryColor: UIColor(named: color) ?? .clear, date: date, priority: priority, isDone: task.isDone)
         }
         
         

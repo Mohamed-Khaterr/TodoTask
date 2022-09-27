@@ -1,11 +1,12 @@
 //
-//  CreateTaskCollectionViewCell.swift
+//  CateoryCollectionViewCell.swift
 //  MyTodoList
 //
-//  Created by Khater on 9/19/22.
+//  Created by Khater on 9/27/22.
 //
 
 import UIKit
+
 
 class CategoryCollectionViewCell: UICollectionViewCell {
 
@@ -28,10 +29,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         categoryNameLabel.text = category.name
         categoryNameLabel.textColor = UIColor(named: category.color!)?.adjust(hueBy: 0, saturationBy: 0.8, brightnessBy: 0.2)
         categoryView.backgroundColor = UIColor(named: category.color!)
-    }
-    
-    static func nib() -> UINib{
-        return UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
     }
 
 }

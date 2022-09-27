@@ -40,7 +40,6 @@ class CreateTaskVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(CategoryCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -333,20 +332,11 @@ extension CreateTaskVC: UITextFieldDelegate{
 // MARK: - CollectionView DataSource
 extension CreateTaskVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if categories.isEmpty {
-            return 1
-        }
-        
         return categories.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as! CategoryCollectionViewCell
-        
-        if categories.isEmpty {
-            cell.categoryNameLabel.text = "You need to create Category"
-            return cell
-        }
         
         cell.configure(category: categories[indexPath.row])
         
@@ -359,18 +349,14 @@ extension CreateTaskVC: UICollectionViewDataSource{
 extension CreateTaskVC: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if categories.isEmpty{
-            return
-        }
-        
         let cell = collectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
-        
+
         if cell.category == selectedCategory.category && selectedCategory.isSelected{
             // There is selected category then do ->
             selectedCategory.category = nil
             selectedCategory.isSelected = false
             cell.categoryView.layer.borderColor = UIColor.clear.cgColor
-            
+
         }else if !selectedCategory.isSelected{
             // No selected category then do ->
             selectedCategory.isSelected = true

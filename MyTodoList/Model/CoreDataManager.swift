@@ -17,7 +17,14 @@ struct CoreDataManager{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    func fetchCategories(with request: NSFetchRequest<Category> = Category.fetchRequest()) -> [Category]? {
+    func fetchCategories(with request: NSFetchRequest<Category> = Category.fetchRequest(), predicate: NSPredicate? = nil, sortDescriptor: [NSSortDescriptor]? = nil) -> [Category]? {
+        if let predicate = predicate {
+            request.predicate = predicate
+        }
+        
+        if let sortDescriptor = sortDescriptor {
+            request.sortDescriptors = sortDescriptor
+        }
         
         do {
             let result = try context.fetch(request)
