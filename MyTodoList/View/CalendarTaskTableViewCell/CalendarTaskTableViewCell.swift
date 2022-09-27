@@ -55,6 +55,12 @@ class CalendarTaskTableViewCell: UITableViewCell {
         taskDescritpionLabel.text = descritpion
     }
     
+    func onlyOneCell(){
+        borderView.backgroundColor = Constant.backgroundColor
+        circleView.backgroundColor = Constant.black
+        lineView.isHidden = true
+    }
+    
     func firstCell(){
         borderView.backgroundColor = Constant.backgroundColor
         circleView.backgroundColor = Constant.black

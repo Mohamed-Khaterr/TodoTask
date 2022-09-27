@@ -81,17 +81,9 @@ class CreateTaskVC: UIViewController {
     
     
     private func createNotification(at time: Date,title: String, body: String){
-        guard remindMeSwitch.isOn else {
-            print("*************************************************************")
-            print("NONONO Notification")
-            print("*************************************************************")
-            return
-        }
+        guard remindMeSwitch.isOn else {  return }
         
         
-        print("*************************************************************")
-        print("Creating Notification")
-        print("*************************************************************")
         // MARK: Create Local Notitification
         let content = UNMutableNotificationContent()
         content.title = title

@@ -21,11 +21,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lma-3C-w7U">
                         <rect key="frame" x="8" y="0.0" width="445" height="124"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pc-7P-3ai">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pc-7P-3ai">
                                 <rect key="frame" x="16" y="42.5" width="44" height="39"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOq-tK-KYP">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="14.5"/>
+                                        <rect key="frame" x="6" y="0.0" width="32" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -39,14 +39,14 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpZ-x5-P9N" userLabel="Line View">
-                                <rect key="frame" x="75" y="15" width="1" height="109"/>
+                                <rect key="frame" x="80" y="15" width="1" height="109"/>
                                 <color key="backgroundColor" name="Black"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="HII-cS-jmC"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UW4-WO-cpb" userLabel="Border View">
-                                <rect key="frame" x="67.5" y="0.0" width="15" height="15"/>
+                                <rect key="frame" x="72" y="0.0" width="15" height="15"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1Y-pB-ZsK" userLabel="Circle View">
                                         <rect key="frame" x="2.5" y="2.5" width="10" height="10"/>
@@ -66,10 +66,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eP-ET-pGJ" userLabel="Task Content View">
-                                <rect key="frame" x="96" y="22" width="341" height="80"/>
+                                <rect key="frame" x="101" y="22" width="336" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOk-QI-VgU">
-                                        <rect key="frame" x="16" y="20" width="317" height="20.5"/>
+                                        <rect key="frame" x="16" y="20" width="312" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -97,7 +97,7 @@
                             <constraint firstItem="7pc-7P-3ai" firstAttribute="leading" secondItem="lma-3C-w7U" secondAttribute="leading" constant="16" id="1WH-pf-wci"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="124" id="JfY-4R-KhJ"/>
                             <constraint firstAttribute="bottom" secondItem="fpZ-x5-P9N" secondAttribute="bottom" id="PNI-A0-A9b"/>
-                            <constraint firstItem="fpZ-x5-P9N" firstAttribute="leading" secondItem="lma-3C-w7U" secondAttribute="leading" constant="75" id="Pdy-yu-kTH"/>
+                            <constraint firstItem="fpZ-x5-P9N" firstAttribute="leading" secondItem="lma-3C-w7U" secondAttribute="leading" constant="80" id="Pdy-yu-kTH"/>
                             <constraint firstItem="UW4-WO-cpb" firstAttribute="top" secondItem="lma-3C-w7U" secondAttribute="top" id="RO8-yk-ToJ"/>
                             <constraint firstItem="UW4-WO-cpb" firstAttribute="leading" secondItem="fpZ-x5-P9N" secondAttribute="leading" multiplier="0.9" id="gMa-hH-eih"/>
                             <constraint firstAttribute="trailing" secondItem="9eP-ET-pGJ" secondAttribute="trailing" constant="8" id="jCR-RF-w8P"/>

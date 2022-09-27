@@ -50,7 +50,7 @@ class TaskTableViewCell: UITableViewCell {
         categoryView.backgroundColor = categoryColor
         
         // Date Label
-        dateFormat.dateFormat = "h:mm a"
+        dateFormat.dateFormat = "MMM d, h:mm a"
         timeLabel.text = "\(dateFormat.string(from: date))"
         
         // Priority Label

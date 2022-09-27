@@ -9,7 +9,6 @@ import Foundation
 
 
 struct Day{
-    var title: String
-    var number: String
+    var date: Date
     var isSelected: Bool
 }

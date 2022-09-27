@@ -24,8 +24,21 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         return UINib(nibName: "CalendarCollectionViewCell", bundle: nil)
     }
     
-    public func configure(dayTitle: String, dayNumber: String){
+    public func configure(dayTitle: String, dayNumber: String, isSelected: Bool){
         self.dayTitleLabel.text = dayTitle
         self.dayNumberLabel.text = dayNumber
+        selectCell(isSelected: isSelected)
+    }
+    
+    public func selectCell(isSelected: Bool){
+        if isSelected {
+            self.backgroundColor = Constant.lightBlack
+            dayTitleLabel.textColor = Constant.backgroundColor
+            dayNumberLabel.textColor = Constant.backgroundColor
+        }else{
+            self.backgroundColor = .clear
+            dayTitleLabel.textColor = Constant.black
+            dayNumberLabel.textColor = Constant.black
+        }
     }
 }

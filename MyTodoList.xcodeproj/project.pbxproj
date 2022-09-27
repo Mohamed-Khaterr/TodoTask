@@ -132,8 +132,6 @@
 				01F9EC7328D6C0C9009DEA83 /* SceneDelegate.swift */,
 				01F9EC8A28D6C0FF009DEA83 /* Model */,
 				01F9EC8928D6C0F0009DEA83 /* View */,
-				013684A228E11F6300717AB8 /* CalendarCollectionViewCell */,
-				013684A728E151F000717AB8 /* CalendarTaskTableViewCell */,
 				01F9EC8828D6C0E2009DEA83 /* Controller */,
 				01F9EC8228D6C0CB009DEA83 /* Info.plist */,
 				01F9EC8D28D6CCC2009DEA83 /* Extensions.swift */,
@@ -163,6 +161,8 @@
 				01F9EC8B28D6C5B5009DEA83 /* profile-pic.jpg */,
 				01F9EC8F28D6CF82009DEA83 /* TaskTableViewCell */,
 				01869BDE28D969A90056C684 /* CategoryCollectionViewCell */,
+				013684A228E11F6300717AB8 /* CalendarCollectionViewCell */,
+				013684A728E151F000717AB8 /* CalendarTaskTableViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";

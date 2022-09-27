@@ -27,9 +27,9 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let sortDescritptor = NSSortDescriptor(key: "priority", ascending: true)
-        
-        if let fetchedTasks = CoreDataManager.shared.fetchTasks(sortDescriptor: [sortDescritptor]){
+        let sortDescritptorPriority = NSSortDescriptor(key: "priority", ascending: true)
+        let sortDescritpitorDate = NSSortDescriptor(key: "date", ascending: true)
+        if let fetchedTasks = CoreDataManager.shared.fetchTasks(sortDescriptor: [sortDescritptorPriority, sortDescritpitorDate]){
             self.tasks = fetchedTasks
             tableView.reloadData()
         }
@@ -95,6 +95,7 @@ extension HomeVC: UITableViewDataSource{
             
             
             cell.configuare(task: taskName, category: categoryName, categoryColor: UIColor(named: color) ?? .clear, date: date, priority: priority)
+            
             cell.checkBoxImageView.image = task.isDone ? UIImage(named: Constant.checkBox.fill) : UIImage(named: Constant.checkBox.notFill)
         }
         
