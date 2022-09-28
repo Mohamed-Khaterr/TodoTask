@@ -1,11 +1,10 @@
 # TodoTask
 
-This is Todo Task app in iOS created with Swift programming language using UI Design from [Behance](https://www.behance.net/gallery/116968659/To-do-List-Mobile-App?tracking_source=search_projects%7Ctodo%20list%20ui%20design) 
+This is Todo Task app in iOS created with Swift programming language using UI Design from Behance
 
 ## Table of contents
 * [Introduction](#introduction)
 * [Features & API's](#technologies)
-* [Demo](#demo)
 
 
 ## Introduction <span id="introduction"></span>
@@ -26,6 +25,3 @@ This project developed as a result of learning local database, And using UI Desi
 Database
 - CoreData
 - Relational Database
-
-
-## Demo <span id="demo"></span>
