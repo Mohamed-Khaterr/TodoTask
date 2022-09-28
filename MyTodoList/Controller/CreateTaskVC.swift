@@ -32,7 +32,7 @@ class CreateTaskVC: UIViewController {
     private var uuidString = UUID().uuidString
     
     private var categories: [Category] = []
-    private var selectedCategory: (category: Category?, isSelected: Bool) = (nil, false)
+    private var selectedCategory: Category?
     
     
     private let formatter = DateFormatter()
@@ -250,7 +250,7 @@ class CreateTaskVC: UIViewController {
             return
         }
 
-        guard let selectedCategory = selectedCategory.category else{
+        guard let selectedCategory = selectedCategory else{
             showErrorAlert(title: "Category", message: "Please select category")
             return
         }
@@ -348,22 +348,15 @@ extension CreateTaskVC: UICollectionViewDataSource{
 // MARK: - CollectionView Delegate
 extension CreateTaskVC: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let cell = collectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
-
-        if cell.category == selectedCategory.category && selectedCategory.isSelected{
-            // There is selected category then do ->
-            selectedCategory.category = nil
-            selectedCategory.isSelected = false
-            cell.categoryView.layer.borderColor = UIColor.clear.cgColor
-
-        }else if !selectedCategory.isSelected{
-            // No selected category then do ->
-            selectedCategory.isSelected = true
-            selectedCategory.category = cell.category
-            cell.categoryView.layer.borderWidth = 3
-            cell.categoryView.layer.borderColor = Constant.black?.cgColor
+        for i in 0..<categories.count{
+            categories[i].isSelected = false
         }
+        
+        categories[indexPath.row].isSelected = true
+        
+        self.selectedCategory = categories[indexPath.row]
+        
+        self.collectionView.reloadData()
     }
 }
 

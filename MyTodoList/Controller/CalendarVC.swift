@@ -101,6 +101,8 @@ extension CalendarVC{
     }
     
     private func getWeekDays(shifting shiftBy: Int = 0){
+        updateTodayLabel()
+        fetchSelectedDateTasks()
         for i in 0..<7{
             // Get Dates of each day (7 days)
             if let dayDate = Calendar.current.date(byAdding: .day, value: (i - 7) + 4 + shiftBy, to: Date()){

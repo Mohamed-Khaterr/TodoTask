@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName=".Category" syncable="YES" codeGenerationType="class">
         <attribute name="color" attributeType="String"/>
+        <attribute name="isSelected" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tasks" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="parentCategory" inverseEntity="Task"/>
     </entity>
@@ -11,10 +12,10 @@
         <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="priority" attributeType="String"/>
-        <relationship name="parentCategory" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="tasks" inverseEntity="Category"/>
+        <relationship name="parentCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="tasks" inverseEntity="Category"/>
     </entity>
     <elements>
-        <element name="Category" positionX="128.93359375" positionY="-8.00244140625" width="128" height="74"/>
+        <element name="Category" positionX="128.93359375" positionY="-8.00244140625" width="128" height="89"/>
         <element name="Task" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

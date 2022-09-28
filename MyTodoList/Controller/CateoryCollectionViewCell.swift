@@ -29,6 +29,13 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         categoryNameLabel.text = category.name
         categoryNameLabel.textColor = UIColor(named: category.color!)?.adjust(hueBy: 0, saturationBy: 0.8, brightnessBy: 0.2)
         categoryView.backgroundColor = UIColor(named: category.color!)
+        
+        categoryView.layer.borderWidth = 3
+        if category.isSelected{
+            categoryView.layer.borderColor = Constant.black?.cgColor
+        }else{
+            categoryView.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 
 }

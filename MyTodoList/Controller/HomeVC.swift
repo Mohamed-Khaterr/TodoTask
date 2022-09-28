@@ -28,7 +28,7 @@ class HomeVC: UIViewController {
         
         let sortDescritptorPriority = NSSortDescriptor(key: "priority", ascending: true)
         let sortDescritpitorDate = NSSortDescriptor(key: "date", ascending: true)
-        if let fetchedTasks = CoreDataManager.shared.fetchTasks(sortDescriptor: [sortDescritptorPriority, sortDescritpitorDate]){
+        if let fetchedTasks = CoreDataManager.shared.fetchTasks(sortDescriptor: [sortDescritpitorDate, sortDescritptorPriority]){
             self.tasks = fetchedTasks
             tableView.reloadData()
         }

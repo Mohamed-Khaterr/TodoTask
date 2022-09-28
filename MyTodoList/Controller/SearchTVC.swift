@@ -58,13 +58,6 @@ class SearchTVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         tableView.dataSource = self
         
         searchBar.delegate = self
@@ -119,10 +112,19 @@ extension SearchTVC: UITableViewDataSource{
         
         switch selectedSearch {
         case .task:
-            cell.textLabel?.text = tasks[indexPath.row].name
+            
+            if let name = tasks[indexPath.row].name, let date = tasks[indexPath.row].date{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM d, h:mm a"
+                let dateString = formatter.string(from: date)
+                
+                cell.textLabel?.text = name
+                cell.detailTextLabel?.text = dateString
+            }
             
         case .category:
             cell.textLabel?.text = categories[indexPath.row].name
+            cell.detailTextLabel?.text = ""
         }
         
 
