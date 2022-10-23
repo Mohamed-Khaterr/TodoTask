@@ -29,11 +29,12 @@ Database
 - Relational Database
 
 ## Demo <span id="demo"></span>
-
+Screenshot
 <p align="center">
   <img src="/Demo/Mockup-light.png" height="600">
 </p>
 
+Video
 <p align="center">
   <img src="/Demo/screen-recorder-gif.gif" height="600">
 </p>
